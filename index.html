@@ -1,0 +1,2343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="PharmaLink provides a transparent, prescription-led medical supply coordination route from India to clients in the USA."
+    />
+    <meta name="theme-color" content="#135c9b" />
+    <title>PharmaLink | Prescription Supply Coordination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Route of Care — Swiss information design meets contemporary health-service editorial. */
+      :root {
+        --blue: #135c9b;
+        --blue-deep: #083961;
+        --teal: #187b78;
+        --saffron: #da9638;
+        --ink: #172c3a;
+        --paper: #fbfaf6;
+        --mist: #eef4f3;
+        --line: #d8e3e1;
+        --muted: #5b747d;
+        --shadow: 0 18px 42px rgba(20, 58, 71, 0.1);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "DM Sans", Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        z-index: 50;
+        inset: 0 auto 0 0;
+        width: 5px;
+        background: linear-gradient(
+          180deg,
+          var(--saffron) 0 8%,
+          var(--blue) 8% 68%,
+          var(--teal) 68%
+        );
+        pointer-events: none;
+      }
+      a {
+        color: inherit;
+      }
+      button {
+        font: inherit;
+      }
+      .wrap {
+        width: min(100% - 48px, 1370px);
+        margin-inline: auto;
+      }
+      .serif {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+      }
+      .eyebrow {
+        margin: 0;
+        color: var(--blue);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.17em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+      .route-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: 1.7rem;
+        padding: 0.55rem 0.76rem;
+        color: #54737b;
+        background: #f0f6f5;
+        border-bottom: 1px solid #c9deda;
+        font-size: 0.59rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .route-chip::before {
+        content: "";
+        width: 31px;
+        height: 13px;
+        border-top: 1px solid var(--blue);
+        border-right: 1px solid var(--blue);
+        border-radius: 0 13px 0 0;
+      }
+      .route-chip::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--saffron);
+        box-shadow: 0 0 0 3px var(--paper);
+      }
+      .route-line {
+        position: relative;
+      }
+      .route-line::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 0;
+        bottom: 0;
+        border-left: 1px dashed rgba(19, 92, 155, 0.28);
+      }
+      .route-dot {
+        position: absolute;
+        z-index: 1;
+        left: 2px;
+        top: 12px;
+        width: 13px;
+        height: 13px;
+        border: 3px solid var(--paper);
+        border-radius: 50%;
+        background: var(--saffron);
+        box-shadow: 0 0 0 1px rgba(19, 92, 155, 0.35);
+      }
+
+      /* Header */
+      .site-header {
+        position: sticky;
+        z-index: 40;
+        top: 0;
+        border-bottom: 1px solid rgba(216, 227, 225, 0.9);
+        background: rgba(251, 250, 246, 0.94);
+        backdrop-filter: blur(13px);
+      }
+      .header-inner {
+        display: flex;
+        min-height: 75px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.68rem;
+        text-decoration: none;
+      }
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+      }
+      .brand-name {
+        position: relative;
+        display: block;
+        width: max-content;
+        padding-right: 9px;
+        color: var(--ink);
+        font-size: 1.12rem;
+        font-weight: 700;
+        letter-spacing: -0.06em;
+        line-height: 1;
+      }
+      .brand-name b {
+        color: var(--blue);
+        font-weight: inherit;
+      }
+      .brand-name::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 1px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--saffron);
+      }
+      .brand-kicker {
+        display: block;
+        margin-top: 0.28rem;
+        color: #668087;
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .main-nav {
+        display: flex;
+        align-items: center;
+        gap: 1.65rem;
+      }
+      .main-nav a,
+      .info-link {
+        color: #4c6570;
+        font-size: 0.81rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.18s ease;
+      }
+      .main-nav a:hover,
+      .info-link:hover {
+        color: var(--blue);
+      }
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.15rem;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.48rem;
+        min-height: 43px;
+        padding: 0.75rem 1.02rem;
+        border: 0;
+        border-radius: 999px;
+        color: white;
+        background: var(--blue);
+        box-shadow: 0 10px 20px rgba(19, 92, 155, 0.18);
+        font-size: 0.82rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition:
+          transform 0.18s ease,
+          background 0.18s ease,
+          box-shadow 0.18s ease;
+      }
+      .button:hover {
+        background: var(--blue-deep);
+        box-shadow: 0 14px 25px rgba(19, 92, 155, 0.25);
+        transform: translateY(-1px);
+      }
+      .button:active {
+        transform: scale(0.97);
+      }
+      .button.alt {
+        color: var(--blue);
+        background: #fff;
+        border: 1px solid #c2d4d6;
+        box-shadow: none;
+      }
+      .button.alt:hover {
+        background: #edf6f7;
+      }
+      .mobile-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--blue);
+        background: transparent;
+      }
+      .mobile-nav {
+        display: none;
+        border-top: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .mobile-nav.is-open {
+        display: block;
+      }
+      .mobile-nav .wrap {
+        display: grid;
+        gap: 0.9rem;
+        padding-block: 1.15rem;
+      }
+      .mobile-nav a {
+        color: var(--ink);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      /* Hero */
+      .hero {
+        position: relative;
+        min-height: 700px;
+        padding: 6.2rem 0 2rem;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        right: -7%;
+        top: 3.2rem;
+        width: min(60vw, 780px);
+        height: 77%;
+        border-radius: 43% 0 0 43%;
+        background: #e7f1f0;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(430px, 0.92fr);
+        align-items: start;
+        gap: 3rem;
+      }
+      .hero-copy {
+        max-width: 720px;
+        padding-top: 1rem;
+      }
+      h1 {
+        margin: 0.9rem 0 1.2rem;
+        font-size: clamp(3.1rem, 6.6vw, 6.25rem);
+        letter-spacing: -0.075em;
+        line-height: 0.92;
+      }
+      h1 em {
+        color: var(--blue);
+        font-style: italic;
+      }
+      .hero-copy > p:not(.eyebrow) {
+        max-width: 570px;
+        color: #55707a;
+        font-size: 1.05rem;
+        line-height: 1.73;
+      }
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.85rem;
+      }
+      .hero-art {
+        position: relative;
+        min-height: 345px;
+        margin-top: 1rem;
+        overflow: hidden;
+        border-radius: 1.5rem 1.5rem 1.5rem 0.25rem;
+        background: linear-gradient(135deg, #f8f8f4 0%, #dbeceb 100%);
+        box-shadow: var(--shadow);
+      }
+      .hero-art::before {
+        content: "";
+        position: absolute;
+        inset: 10% -9% -18% 27%;
+        border: 1px solid rgba(19, 92, 155, 0.25);
+        border-radius: 50%;
+      }
+      .hero-art::after {
+        content: "";
+        position: absolute;
+        right: 9%;
+        top: 8%;
+        width: 160px;
+        height: 145px;
+        border-radius: 1rem 0.25rem 1rem 1rem;
+        background: linear-gradient(145deg, #fff, #dcecea);
+        box-shadow: 14px 16px 22px rgba(19, 92, 155, 0.12);
+        transform: rotate(3deg);
+      }
+      .paper-card {
+        position: absolute;
+        z-index: 2;
+        left: 8%;
+        top: 15%;
+        width: 184px;
+        height: 230px;
+        padding: 18px;
+        border-radius: 0.85rem 0.15rem 0.85rem 0.85rem;
+        background: #fffefa;
+        box-shadow: 0 16px 26px rgba(18, 58, 74, 0.14);
+        transform: rotate(-4deg);
+      }
+      .paper-card::before {
+        content: "";
+        display: block;
+        width: 45px;
+        height: 45px;
+        margin-bottom: 22px;
+        border-radius: 0.65rem 0.15rem 0.65rem 0.65rem;
+        background: linear-gradient(135deg, var(--blue), var(--teal));
+      }
+      .paper-card i,
+      .paper-card b {
+        display: block;
+        height: 6px;
+        margin: 9px 0;
+        border-radius: 2px;
+        background: #d7e4e1;
+      }
+      .paper-card i:nth-of-type(2) {
+        width: 78%;
+      }
+      .paper-card i:nth-of-type(3) {
+        width: 57%;
+      }
+      .paper-card b {
+        width: 88%;
+        background: #a7ccca;
+      }
+      .parcel {
+        position: absolute;
+        z-index: 3;
+        right: 8%;
+        bottom: 12%;
+        width: 115px;
+        height: 102px;
+        border: 1px solid #b78841;
+        border-radius: 0.22rem;
+        background: #d7b26b;
+        box-shadow: 0 14px 22px rgba(63, 50, 25, 0.15);
+        transform: rotate(-4deg);
+      }
+      .parcel::before {
+        content: "";
+        position: absolute;
+        left: 47%;
+        top: 0;
+        width: 9px;
+        height: 100%;
+        background: #f6e9c8;
+        transform: skewY(-18deg);
+      }
+      .parcel::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 43%;
+        width: 100%;
+        height: 9px;
+        background: #f6e9c8;
+      }
+      .route-curve {
+        position: absolute;
+        z-index: 4;
+        left: 35%;
+        top: 48%;
+        width: 43%;
+        height: 33%;
+        border-top: 3px solid var(--blue);
+        border-radius: 70% 70% 0 0;
+        transform: rotate(8deg);
+      }
+      .route-curve::before,
+      .route-curve::after {
+        content: "";
+        position: absolute;
+        top: -6px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--blue);
+        box-shadow: 0 0 0 4px #e8f2f0;
+      }
+      .route-curve::before {
+        left: -1px;
+      }
+      .route-curve::after {
+        right: -3px;
+      }
+      .hero-caption {
+        position: absolute;
+        z-index: 5;
+        left: 1.2rem;
+        bottom: 1.15rem;
+        max-width: 260px;
+        padding: 0.8rem 0.9rem;
+        border-left: 3px solid var(--saffron);
+        color: white;
+        background: rgba(8, 57, 97, 0.94);
+        font-size: 0.75rem;
+        line-height: 1.5;
+      }
+      .hero-caption b {
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+      .fact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column: 1/-1;
+        margin-top: 1.1rem;
+        border: 1px solid var(--line);
+        background: var(--line);
+        gap: 1px;
+      }
+      .fact {
+        padding: 1.05rem 1.1rem;
+        background: var(--paper);
+      }
+      .fact strong {
+        display: block;
+        color: var(--blue-deep);
+        font-size: 1.02rem;
+        letter-spacing: -0.035em;
+      }
+      .fact span {
+        display: block;
+        margin-top: 0.22rem;
+        color: #6a828a;
+        font-size: 0.72rem;
+        line-height: 1.45;
+      }
+
+      /* Content sections */
+      section {
+        scroll-margin-top: 88px;
+      }
+      .section {
+        padding: 6rem 0;
+      }
+      .section-head {
+        max-width: 690px;
+      }
+      .section-head h2,
+      .policy-head h2 {
+        margin: 0.65rem 0 0;
+        font-size: clamp(2.3rem, 4.1vw, 4rem);
+        letter-spacing: -0.065em;
+        line-height: 0.96;
+      }
+      .section-head > p:not(.eyebrow) {
+        max-width: 570px;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+      .process {
+        padding-left: 35px;
+      }
+      .process .section-head {
+        position: relative;
+      }
+      .process .route-dot {
+        left: -33px;
+        top: 7px;
+      }
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.1rem;
+        margin-top: 2.8rem;
+      }
+      .process-card {
+        position: relative;
+        min-height: 260px;
+        padding: 1.45rem;
+        border: 1px solid var(--line);
+        border-radius: 1.2rem 1.2rem 1.2rem 0.18rem;
+        background: #fff;
+        box-shadow: 0 12px 28px rgba(38, 70, 78, 0.045);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .process-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 35px rgba(38, 70, 78, 0.09);
+      }
+      .number {
+        position: absolute;
+        right: 1.35rem;
+        top: 1.2rem;
+        color: #a9bdbf;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+      }
+      .icon-box {
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 0.75rem 0.75rem 0.75rem 0.15rem;
+        color: var(--blue);
+        background: #e7f3f4;
+        font-weight: 700;
+      }
+      .process-card h3 {
+        margin: 2.15rem 0 0.55rem;
+        font-size: 1.12rem;
+        letter-spacing: -0.035em;
+      }
+      .process-card p {
+        color: #617880;
+        font-size: 0.88rem;
+        line-height: 1.65;
+      }
+      .price-panel {
+        display: grid;
+        grid-template-columns: 0.88fr 1.12fr;
+        gap: 2rem;
+        align-items: center;
+        margin-top: 4.5rem;
+        padding: 2.1rem;
+        overflow: hidden;
+        border-radius: 1.5rem 0.25rem 1.5rem 1.5rem;
+        color: white;
+        background: var(--blue-deep);
+      }
+      .price-panel .eyebrow {
+        color: #a9d5d1;
+      }
+      .price-value {
+        margin: 0.35rem 0 0.45rem;
+        font-size: clamp(3.7rem, 6vw, 5.8rem);
+        letter-spacing: -0.08em;
+        line-height: 0.88;
+      }
+      .price-panel p {
+        color: #d5e7eb;
+        line-height: 1.65;
+      }
+      .charges {
+        display: grid;
+        gap: 0.5rem;
+        padding: 1.05rem;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .charge {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        color: #eaf7f6;
+        font-size: 0.84rem;
+        line-height: 1.48;
+      }
+      .charge:last-child {
+        border: 0;
+      }
+      .charge b {
+        color: #fff;
+      }
+      .charge-dot {
+        flex: 0 0 auto;
+        width: 18px;
+        height: 18px;
+        margin-top: 0.1rem;
+        border-radius: 50%;
+        border: 2px solid #a9d5d1;
+      }
+      .document-zone {
+        background: var(--mist);
+      }
+      .document-grid {
+        display: grid;
+        grid-template-columns: 0.85fr 1.05fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .document-copy h2 {
+        margin: 0.65rem 0 0;
+        font-size: clamp(2.25rem, 4vw, 3.9rem);
+        letter-spacing: -0.06em;
+        line-height: 0.97;
+      }
+      .document-copy > p:not(.eyebrow) {
+        color: var(--muted);
+        line-height: 1.72;
+      }
+      .document-card {
+        position: relative;
+        padding: 1.3rem;
+        border: 1px solid #d5e4e2;
+        border-radius: 0.35rem 1.25rem 1.25rem 1.25rem;
+        background: var(--paper);
+        box-shadow: 13px 13px 0 #d5e8e6;
+      }
+      .document-card::before {
+        content: "REVIEW BEFORE SUBMITTING";
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        color: var(--saffron);
+        font-size: 0.58rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+      }
+      .doc-row {
+        display: flex;
+        gap: 0.8rem;
+        padding: 1.12rem 0;
+        border-bottom: 1px solid #d9e4e2;
+      }
+      .doc-row:last-child {
+        border: 0;
+      }
+      .doc-icon {
+        display: grid;
+        place-items: center;
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        color: #fff;
+        background: var(--blue);
+        font-size: 0.67rem;
+        font-weight: 700;
+      }
+      .doc-row h3 {
+        margin: 0;
+        font-size: 0.92rem;
+      }
+      .doc-row p {
+        margin: 0.28rem 0 0;
+        color: #63808a;
+        font-size: 0.8rem;
+        line-height: 1.55;
+      }
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 5rem;
+        align-items: center;
+      }
+      .route-illustration {
+        position: relative;
+        min-height: 335px;
+        overflow: hidden;
+        border-radius: 1.4rem 0.25rem 1.4rem 1.4rem;
+        background: linear-gradient(145deg, #eff6f4, #dbecea);
+        box-shadow: var(--shadow);
+      }
+      .route-illustration::before {
+        content: "";
+        position: absolute;
+        left: 5%;
+        right: 5%;
+        top: 51%;
+        border-top: 5px solid var(--blue);
+        border-radius: 50%;
+        transform: rotate(-7deg);
+      }
+      .route-illustration::after {
+        content: "";
+        position: absolute;
+        left: 12%;
+        top: 25%;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--saffron);
+        box-shadow:
+          84px 55px 0 var(--teal),
+          173px 12px 0 var(--blue),
+          260px 68px 0 var(--saffron),
+          340px 10px 0 var(--teal);
+      }
+      .mini-building {
+        position: absolute;
+        bottom: 23%;
+        width: 60px;
+        height: 54px;
+        border: 1px solid #a2c0c3;
+        border-radius: 0.6rem 0.6rem 0.1rem 0.1rem;
+        background: #fffefa;
+        box-shadow: 0 10px 15px rgba(16, 66, 78, 0.1);
+      }
+      .mini-building:nth-child(1) {
+        left: 7%;
+      }
+      .mini-building:nth-child(2) {
+        left: 31%;
+        bottom: 35%;
+      }
+      .mini-building:nth-child(3) {
+        left: 59%;
+      }
+      .mini-building:nth-child(4) {
+        right: 7%;
+        bottom: 34%;
+      }
+      .dash-copy h2 {
+        margin: 0.6rem 0 0;
+        font-size: clamp(2.25rem, 4vw, 3.85rem);
+        letter-spacing: -0.06em;
+        line-height: 0.97;
+      }
+      .dash-copy > p:not(.eyebrow) {
+        color: var(--muted);
+        line-height: 1.72;
+      }
+      .mini-list {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.62rem 0.75rem;
+        margin-top: 1.5rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid var(--line);
+      }
+      .mini-list b {
+        color: var(--blue);
+        font-size: 0.69rem;
+        letter-spacing: 0.13em;
+      }
+      .mini-list span {
+        color: var(--muted);
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+      .notice-zone {
+        background: #f7f3e9;
+      }
+      .notice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2.6rem;
+      }
+      .notice {
+        padding: 1.35rem;
+        border: 1px solid #e8ddc2;
+        border-radius: 1.05rem;
+        background: #fffdf8;
+      }
+      .notice .notice-mark {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        color: #a0641d;
+        border: 1px solid #e6c47c;
+        border-radius: 0.45rem 0.1rem 0.45rem 0.45rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+      .notice h3 {
+        margin: 0.85rem 0 0.45rem;
+        font-size: 1rem;
+        letter-spacing: -0.025em;
+      }
+      .notice p {
+        margin: 0;
+        color: #6b6657;
+        font-size: 0.84rem;
+        line-height: 1.65;
+      }
+      .notice a {
+        display: inline-flex;
+        gap: 0.35rem;
+        margin-top: 0.9rem;
+        color: var(--blue);
+        font-size: 0.76rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 0.68fr 1.2fr;
+        gap: 5rem;
+      }
+      .faq-list {
+        border-top: 1px solid var(--line);
+      }
+      .faq {
+        border-bottom: 1px solid var(--line);
+      }
+      .faq summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1.16rem 0;
+        list-style: none;
+        color: #203946;
+        font-size: 0.98rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq summary::after {
+        content: "›";
+        color: var(--blue);
+        font-size: 1.4rem;
+        transition: transform 0.2s ease;
+      }
+      .faq[open] summary::after {
+        transform: rotate(90deg);
+      }
+      .faq p {
+        max-width: 650px;
+        margin: 0;
+        padding: 0 1.9rem 1.2rem 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+      .cta {
+        padding-top: 0;
+      }
+      .cta-inner {
+        position: relative;
+        overflow: hidden;
+        padding: 2.2rem;
+        border-radius: 1.5rem 0.25rem 1.5rem 1.5rem;
+        color: #fff;
+        background: linear-gradient(115deg, var(--blue-deep), var(--blue));
+      }
+      .cta-inner::after {
+        content: "";
+        position: absolute;
+        right: -5rem;
+        bottom: -8rem;
+        width: 20rem;
+        height: 20rem;
+        border: 1px solid rgba(255, 255, 255, 0.34);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 32px rgba(255, 255, 255, 0.07),
+          0 0 0 64px rgba(255, 255, 255, 0.035);
+      }
+      .cta h2 {
+        position: relative;
+        z-index: 1;
+        max-width: 650px;
+        margin: 0.5rem 0 0;
+        font-size: clamp(2.1rem, 4vw, 3.75rem);
+        letter-spacing: -0.06em;
+        line-height: 0.99;
+      }
+      .cta p {
+        position: relative;
+        z-index: 1;
+        max-width: 570px;
+        color: #d7edf0;
+        line-height: 1.7;
+      }
+      .cta .button {
+        position: relative;
+        z-index: 1;
+        margin-top: 1rem;
+        color: var(--blue-deep);
+        background: #fff;
+        box-shadow: none;
+      }
+
+      /* Information & policy documents */
+      .policy-band {
+        padding: 6rem 0;
+        background: linear-gradient(180deg, #fffdfa 0%, #eef5f3 100%);
+      }
+      .policy-intro {
+        max-width: 755px;
+      }
+      .policy-intro h2 {
+        margin: 0.65rem 0 0;
+        font-size: clamp(2.3rem, 4vw, 4rem);
+        letter-spacing: -0.065em;
+        line-height: 0.97;
+      }
+      .policy-intro p:not(.eyebrow) {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .policy-layout {
+        display: grid;
+        grid-template-columns: 210px 1fr;
+        gap: 2.2rem;
+        margin-top: 2.4rem;
+      }
+      .policy-nav {
+        position: sticky;
+        top: 96px;
+        align-self: start;
+        display: grid;
+        gap: 0.45rem;
+        padding: 0.85rem;
+        border-left: 1px dashed rgba(19, 92, 155, 0.35);
+      }
+      .policy-nav a {
+        padding: 0.4rem 0.55rem;
+        color: #5b747d;
+        font-size: 0.77rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .policy-nav a:hover {
+        color: var(--blue);
+        background: #fff;
+      }
+      .policy-docs {
+        display: grid;
+        gap: 1.15rem;
+      }
+      .policy-doc {
+        position: relative;
+        padding: 4.8rem 2rem 2rem;
+        border: 1px solid var(--line);
+        border-radius: 0.25rem 1.2rem 1.2rem 1.2rem;
+        background: #fff;
+        box-shadow: 0 13px 32px rgba(35, 69, 80, 0.05);
+        scroll-margin-top: 90px;
+      }
+      .policy-doc::before {
+        content: "PHARMALINK / POLICY RECORD";
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        padding: 11px 14px;
+        border-radius: 0.25rem 0 0.7rem 0;
+        color: #e4f2f4;
+        background: var(--blue-deep);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+      .policy-doc::after {
+        content: "ROUTE CHECKPOINT";
+        position: absolute;
+        top: 12px;
+        left: 174px;
+        color: #668087;
+        font-size: 0.54rem;
+        font-weight: 700;
+        letter-spacing: 0.11em;
+      }
+      .policy-doc h3 {
+        margin: 0 0 1rem;
+        color: var(--blue-deep);
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        letter-spacing: -0.05em;
+      }
+      .policy-doc h4 {
+        margin: 1.6rem 0 0.55rem;
+        color: var(--blue-deep);
+        font-size: 1.2rem;
+        letter-spacing: -0.035em;
+      }
+      .policy-doc p,
+      .policy-doc li {
+        color: #56717a;
+        font-size: 0.9rem;
+        line-height: 1.75;
+      }
+      .policy-doc ul {
+        display: grid;
+        gap: 0.45rem;
+        margin: 0.7rem 0;
+        padding-left: 1.2rem;
+      }
+      .policy-doc li::marker {
+        color: var(--saffron);
+      }
+      .policy-note {
+        margin-top: 1.2rem;
+        padding: 0.8rem 0.9rem;
+        border-left: 3px solid var(--teal);
+        background: var(--mist);
+        color: #56717a;
+        font-size: 0.78rem;
+        line-height: 1.55;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 2.6rem;
+      }
+      .contact-card {
+        position: relative;
+        padding: 3.2rem 1.25rem 1.25rem;
+        border: 1px solid var(--line);
+        border-radius: 0.25rem 1rem 1rem 1rem;
+        background: #fff;
+      }
+      .contact-card::before {
+        position: absolute;
+        top: 0.92rem;
+        left: 1.25rem;
+        color: #6f898e;
+        font-size: 0.57rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        content: "CONTACT CHANNEL / 01";
+      }
+      .contact-card:nth-child(2)::before {
+        content: "CONTACT CHANNEL / 02";
+      }
+      .contact-card:nth-child(3)::before {
+        content: "CONTACT CHANNEL / 03";
+      }
+      .contact-icon {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 0.7rem 0.7rem 0.7rem 0.1rem;
+        color: var(--blue);
+        background: #eaf4f4;
+        font-size: 1rem;
+      }
+      .contact-card h3 {
+        margin: 0.75rem 0 0.3rem;
+        font-size: 1.1rem;
+        letter-spacing: -0.035em;
+      }
+      .contact-card p,
+      .contact-card a {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.87rem;
+        line-height: 1.65;
+        text-decoration: none;
+      }
+      .contact-card a:hover {
+        color: var(--blue);
+      }
+
+      /* Footer */
+      footer {
+        padding: 3.7rem 0 1.8rem;
+        color: #d3e5e7;
+        background: #102d3b;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1.1fr;
+        gap: 2rem;
+      }
+      .footer-brand p {
+        max-width: 360px;
+        color: #a9c6ca;
+        font-size: 0.86rem;
+        line-height: 1.7;
+      }
+      .footer-title {
+        margin: 0 0 0.75rem;
+        color: #fff;
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .footer-links {
+        display: grid;
+        gap: 0.48rem;
+      }
+      .footer-links a {
+        color: #b7d1d3;
+        font-size: 0.81rem;
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        color: #fff;
+      }
+      .footer-contact {
+        color: #b7d1d3;
+        font-size: 0.81rem;
+        line-height: 1.7;
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 2.6rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid rgba(210, 235, 237, 0.16);
+        color: #89abb0;
+        font-size: 0.66rem;
+        line-height: 1.55;
+      }
+
+      @media (max-width: 1000px) {
+        .main-nav {
+          gap: 1rem;
+        }
+        .info-link {
+          display: none;
+        }
+        .hero {
+          min-height: auto;
+        }
+        .hero-grid,
+        .document-grid,
+        .dashboard-grid,
+        .faq-grid {
+          grid-template-columns: 1fr;
+          gap: 2.4rem;
+        }
+        .hero-art {
+          max-width: 720px;
+        }
+        .policy-layout {
+          grid-template-columns: 1fr;
+        }
+        .policy-nav {
+          position: static;
+          display: flex;
+          flex-wrap: wrap;
+          border-left: 0;
+          border-bottom: 1px dashed rgba(19, 92, 155, 0.35);
+        }
+        .policy-nav a {
+          padding: 0.3rem 0.5rem;
+        }
+        .policy-docs {
+          gap: 1rem;
+        }
+        .process-grid,
+        .notice-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (max-width: 760px) {
+        body::before {
+          display: none;
+        }
+        .wrap {
+          width: min(100% - 30px, 1370px);
+        }
+        .site-header .wrap {
+          width: min(100% - 30px, 1370px);
+        }
+        .main-nav,
+        .header-actions {
+          display: none;
+        }
+        .mobile-toggle {
+          display: grid;
+          place-items: center;
+        }
+        .hero {
+          padding: 3.4rem 0 1.2rem;
+        }
+        .hero::before {
+          right: -40%;
+          top: 13rem;
+          width: 118%;
+          height: 390px;
+        }
+        .hero-grid {
+          gap: 1.4rem;
+        }
+        .hero-copy {
+          padding-top: 0;
+        }
+        h1 {
+          font-size: clamp(3rem, 14vw, 4.4rem);
+        }
+        .hero-copy > p:not(.eyebrow) {
+          font-size: 0.94rem;
+        }
+        .hero-art {
+          min-height: 270px;
+          margin-top: 0.2rem;
+        }
+        .paper-card {
+          width: 145px;
+          height: 190px;
+          top: 13%;
+          padding: 13px;
+        }
+        .paper-card::before {
+          width: 35px;
+          height: 35px;
+          margin-bottom: 15px;
+        }
+        .parcel {
+          width: 88px;
+          height: 80px;
+        }
+        .route-curve {
+          left: 35%;
+          top: 52%;
+        }
+        .hero-caption {
+          font-size: 0.67rem;
+          left: 0.8rem;
+          bottom: 0.8rem;
+          max-width: 215px;
+        }
+        .fact-grid {
+          grid-template-columns: 1fr;
+        }
+        .fact {
+          padding: 0.85rem 1rem;
+        }
+        .section {
+          padding: 4.3rem 0;
+        }
+        .section-head h2,
+        .policy-head h2,
+        .policy-intro h2 {
+          font-size: clamp(2.25rem, 11vw, 3.2rem);
+        }
+        .process {
+          padding-left: 26px;
+        }
+        .process .route-dot {
+          left: -25px;
+        }
+        .process-grid,
+        .notice-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .process-card {
+          min-height: auto;
+        }
+        .price-panel {
+          grid-template-columns: 1fr;
+          padding: 1.4rem;
+        }
+        .document-grid,
+        .dashboard-grid,
+        .faq-grid {
+          gap: 1.7rem;
+        }
+        .document-card {
+          box-shadow: 8px 8px 0 #d5e8e6;
+        }
+        .route-illustration {
+          min-height: 245px;
+        }
+        .route-illustration::after {
+          box-shadow:
+            61px 48px 0 var(--teal),
+            128px 10px 0 var(--blue),
+            194px 55px 0 var(--saffron),
+            251px 10px 0 var(--teal);
+        }
+        .mini-building:nth-child(2) {
+          left: 27%;
+        }
+        .mini-building:nth-child(3) {
+          left: 52%;
+        }
+        .mini-building:nth-child(4) {
+          right: 3%;
+        }
+        .faq p {
+          padding-right: 0;
+        }
+        .cta-inner {
+          padding: 1.5rem;
+        }
+        .policy-band {
+          padding: 4.3rem 0;
+        }
+        .policy-doc {
+          padding: 4.7rem 1.2rem 1.35rem;
+        }
+        .policy-doc::after {
+          left: auto;
+          right: 14px;
+          top: 14px;
+          font-size: 0.48rem;
+        }
+        .policy-doc p,
+        .policy-doc li {
+          font-size: 0.86rem;
+        }
+        .policy-doc h4 {
+          font-size: 1.1rem;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 1.6rem;
+        }
+        .footer-bottom {
+          flex-direction: column;
+        }
+        .route-line::before {
+          left: 7px;
+        }
+        .policy-layout {
+          margin-top: 1.6rem;
+        }
+        .brand-kicker {
+          font-size: 0.48rem;
+        }
+        .brand-mark {
+          width: 38px;
+          height: 38px;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-copy,
+        .hero-art,
+        .fact-grid {
+          animation: rise 0.65s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+        .hero-art {
+          animation-delay: 0.08s;
+        }
+        .fact-grid {
+          animation-delay: 0.14s;
+        }
+        @keyframes rise {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="#top" aria-label="PharmaLink home">
+          <svg
+            class="brand-mark"
+            viewBox="0 0 64 64"
+            role="img"
+            aria-label="PharmaLink route symbol"
+          >
+            <path
+              d="M23 8v18a8 8 0 0 0 8 8h11a8 8 0 0 1 8 8v14"
+              fill="none"
+              stroke="#135c9b"
+              stroke-width="7"
+              stroke-linecap="round"
+            />
+            <path
+              d="M41 56V38a8 8 0 0 0-8-8H22a8 8 0 0 1-8-8V9"
+              fill="none"
+              stroke="#187b78"
+              stroke-width="7"
+              stroke-linecap="round"
+            />
+            <path
+              d="M30 13h8m-4-4v8"
+              fill="none"
+              stroke="#135c9b"
+              stroke-width="4"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span
+            ><span class="brand-name">Pharma<b>Link</b></span
+            ><span class="brand-kicker"
+              >Prescription supply coordination</span
+            ></span
+          >
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#process">How it works</a><a href="#about">About us</a
+          ><a href="#contact">Contact</a><a href="#terms">Terms</a>
+        </nav>
+        <div class="header-actions">
+          <a class="info-link" href="#shipping">Shipping information</a
+          ><a
+            class="button"
+            href="https://script.google.com/macros/s/AKfycbyQafLjVf7hkR4SbRAFgeU2jRp9YQObutA0d8tKxbB11SS6OEhasPXvBzxW_ZWdsHRC/exec"
+            target="_blank"
+            rel="noopener"
+            >Client sign in&nbsp; ↗</a
+          >
+        </div>
+        <button
+          class="mobile-toggle"
+          type="button"
+          aria-controls="mobile-navigation"
+          aria-expanded="false"
+          aria-label="Open navigation"
+        >
+          ☰
+        </button>
+      </div>
+      <nav
+        id="mobile-navigation"
+        class="mobile-nav"
+        aria-label="Mobile navigation"
+      >
+        <div class="wrap">
+          <a href="#process">How it works</a><a href="#about">About us</a
+          ><a href="#contact">Contact</a
+          ><a href="#terms">Terms &amp; Conditions</a
+          ><a href="#shipping">Shipping disclaimer</a
+          ><a
+            class="button"
+            href="https://script.google.com/macros/s/AKfycbyQafLjVf7hkR4SbRAFgeU2jRp9YQObutA0d8tKxbB11SS6OEhasPXvBzxW_ZWdsHRC/exec"
+            target="_blank"
+            rel="noopener"
+            >Client sign in&nbsp; ↗</a
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              Dhopat Synergy Export (OPC) Private Ltd. · India → USA
+            </p>
+            <h1 class="serif">
+              A clearer route for <em>prescription</em> supply.
+            </h1>
+            <p>
+              PharmaLink offers a direct, document-led coordination path for
+              eligible prescription supply requests from India to clients in the
+              USA—built around transparent charges, careful review, and
+              door-to-door courier handling.
+            </p>
+            <div class="button-row">
+              <a
+                class="button"
+                href="https://script.google.com/macros/s/AKfycbyQafLjVf7hkR4SbRAFgeU2jRp9YQObutA0d8tKxbB11SS6OEhasPXvBzxW_ZWdsHRC/exec"
+                target="_blank"
+                rel="noopener"
+                >Client sign in&nbsp; →</a
+              ><a class="button alt" href="#process">See the process&nbsp; ›</a>
+            </div>
+          </div>
+          <div
+            class="hero-art"
+            aria-label="An abstract illustration of prescription documents and a delivery parcel"
+          >
+            <div class="paper-card"><i></i><b></b><i></i><i></i></div>
+            <div class="route-curve"></div>
+            <div class="parcel"></div>
+            <div class="hero-caption">
+              <b>Prescription-led coordination</b>Review the documentation,
+              delivery route, and charge categories before a request proceeds.
+            </div>
+          </div>
+          <div class="fact-grid" aria-label="Key service facts">
+            <div class="fact">
+              <strong>Prescription required</strong
+              ><span>Requests are reviewed with supporting documents.</span>
+            </div>
+            <div class="fact">
+              <strong>$15 fixed service fee</strong
+              ><span>Separate from medical cost and courier charges.</span>
+            </div>
+            <div class="fact">
+              <strong>Up to 3 kg per shipment</strong
+              ><span
+                >Subject to route, documentation, and applicable
+                requirements.</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="section">
+        <div class="wrap route-line process">
+          <div class="section-head">
+            <span class="route-dot"></span>
+            <p class="eyebrow">The route, made legible</p>
+            <h2 class="serif">
+              From prescription review to your delivery address.
+            </h2>
+            <p>
+              The process is structured to keep the key client inputs, shipment
+              limits, documentation, and charge categories in view at every
+              step.
+            </p>
+          </div>
+          <div class="process-grid">
+            <article class="process-card">
+              <span class="number">01</span><span class="icon-box">✓</span>
+              <h3>Share the request</h3>
+              <p>
+                Begin with an accurate prescription and request details. Recheck
+                the medicine, quantity, and recipient information before
+                confirmation.
+              </p>
+            </article>
+            <article class="process-card">
+              <span class="number">02</span><span class="icon-box">⌁</span>
+              <h3>Review the documentation</h3>
+              <p>
+                Each shipment is accompanied by client declaration and billing
+                documents for customs purposes, where applicable to the route.
+              </p>
+            </article>
+            <article class="process-card">
+              <span class="number">03</span><span class="icon-box">→</span>
+              <h3>Coordinate delivery</h3>
+              <p>
+                Door-to-door courier charges are communicated separately.
+                Customs and delivery outcomes remain subject to carrier and
+                authority processes.
+              </p>
+            </article>
+          </div>
+          <div class="price-panel">
+            <div>
+              <p class="eyebrow">Charge clarity</p>
+              <div class="price-value serif">$15</div>
+              <p>
+                Fixed service fee for each shipment request, separate from the
+                actual medical cost and door-to-door courier charge.
+              </p>
+            </div>
+            <div class="charges">
+              <div class="charge">
+                <span class="charge-dot"></span
+                ><span
+                  ><b>1. Actual medical cost</b><br />Shown as the
+                  medicine-related charge.</span
+                >
+              </div>
+              <div class="charge">
+                <span class="charge-dot"></span
+                ><span
+                  ><b>2. Door-to-door shipment fee</b><br />Courier charge from
+                  India to the USA.</span
+                >
+              </div>
+              <div class="charge">
+                <span class="charge-dot"></span
+                ><span
+                  ><b>3. PharmaLink service fee</b><br />Fixed at $15 for each
+                  shipment request.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section document-zone">
+        <div class="wrap document-grid">
+          <div class="document-copy">
+            <p class="eyebrow">A deliberate checkpoint</p>
+            <h2 class="serif">Review first. Confirm with care.</h2>
+            <p>
+              Prescription supply and international delivery involve information
+              that needs to be right the first time. The site presents the key
+              conditions before you access your account or proceed with a
+              request.
+            </p>
+            <a class="button alt" href="#prescription"
+              >Read prescription requirements&nbsp; →</a
+            >
+          </div>
+          <div class="document-card">
+            <div class="doc-row">
+              <span class="doc-icon">1</span>
+              <div>
+                <h3>Prescription and order details</h3>
+                <p>
+                  Confirm that the prescription and requested items are complete
+                  and accurate before a shipment is processed.
+                </p>
+              </div>
+            </div>
+            <div class="doc-row">
+              <span class="doc-icon">2</span>
+              <div>
+                <h3>Shipment maximum</h3>
+                <p>
+                  Not more than 3 kg in a single shipment, to help reduce
+                  supply-chain issues and complications.
+                </p>
+              </div>
+            </div>
+            <div class="doc-row">
+              <span class="doc-icon">3</span>
+              <div>
+                <h3>Final-order notice</h3>
+                <p>
+                  Returns and refunds are generally not available for completed
+                  shipment requests, except as required by applicable law.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap dashboard-grid">
+          <div
+            class="route-illustration"
+            aria-label="Abstract route showing checkpoints from documentation to delivery"
+          >
+            <span class="mini-building"></span
+            ><span class="mini-building"></span
+            ><span class="mini-building"></span
+            ><span class="mini-building"></span>
+          </div>
+          <div class="dash-copy">
+            <p class="eyebrow">Your account, in context</p>
+            <h2 class="serif">Keep order details close to the route.</h2>
+            <p>
+              The client dashboard is the central point for available account
+              information—so medical bill, courier charge, tracking, credits,
+              and order history can be checked in one place.
+            </p>
+            <div class="mini-list">
+              <b>ACCOUNT</b
+              ><span
+                >Sign in to view the current details available for your client
+                account.</span
+              ><b>HISTORY</b
+              ><span
+                >Use your dashboard to refer to past order and shipment
+                information.</span
+              ><b>TRACKING</b
+              ><span
+                >Shipment tracking details are made available through the client
+                dashboard when applicable.</span
+              >
+            </div>
+            <p>
+              <a
+                class="button"
+                href="https://script.google.com/macros/s/AKfycbyQafLjVf7hkR4SbRAFgeU2jRp9YQObutA0d8tKxbB11SS6OEhasPXvBzxW_ZWdsHRC/exec"
+                target="_blank"
+                rel="noopener"
+                >Open client sign in&nbsp; →</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section notice-zone">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Important information</p>
+            <h2 class="serif">
+              Clarity around prescriptions, shipping, and final orders.
+            </h2>
+          </div>
+          <div class="notice-grid">
+            <article class="notice">
+              <span class="notice-mark">Rx</span>
+              <h3>Prescription disclaimer</h3>
+              <p>
+                PharmaLink does not provide medical advice or issue
+                prescriptions. A valid prescription and applicable records are
+                the client’s responsibility.
+              </p>
+              <a href="#prescription">Read the full disclaimer&nbsp; →</a>
+            </article>
+            <article class="notice">
+              <span class="notice-mark">↗</span>
+              <h3>Shipping disclaimer</h3>
+              <p>
+                Carrier handling, customs review, import duties, timing, and
+                delivery outcomes are outside PharmaLink’s direct control.
+              </p>
+              <a href="#shipping">Read the full disclaimer&nbsp; →</a>
+            </article>
+            <article class="notice">
+              <span class="notice-mark">!</span>
+              <h3>Order finality</h3>
+              <p>
+                Recheck prescriptions and orders before they move forward.
+                Completed shipment requests are generally not eligible for
+                return or refund.
+              </p>
+              <a href="#terms">Read terms and conditions&nbsp; →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap faq-grid">
+          <div class="section-head">
+            <p class="eyebrow">Frequently asked questions</p>
+            <h2 class="serif">Questions deserve direct answers.</h2>
+            <p>
+              These answers introduce the service structure. For
+              account-specific information, contact PharmaLink or access the
+              client dashboard.
+            </p>
+          </div>
+          <div class="faq-list">
+            <details class="faq">
+              <summary>What does the $15 service fee cover?</summary>
+              <p>
+                It is PharmaLink’s fixed service fee for each shipment request.
+                The medical cost and door-to-door courier charge are separate
+                and are shown as distinct charge categories.
+              </p>
+            </details>
+            <details class="faq">
+              <summary>How much can be shipped in one consignment?</summary>
+              <p>
+                The stated shipment limit is not more than 3 kg at a time. This
+                operating limit is intended to reduce supply-chain complications
+                and remains subject to documentation and route review.
+              </p>
+            </details>
+            <details class="faq">
+              <summary>Do I need a prescription?</summary>
+              <p>
+                Yes. Prescription-led requests require a valid prescription and
+                supporting information as applicable. PharmaLink does not
+                diagnose, prescribe, or substitute for a licensed clinician.
+              </p>
+            </details>
+            <details class="faq">
+              <summary>Can I return a shipment or request a refund?</summary>
+              <p>
+                Requests should be reviewed carefully before confirmation. As
+                stated in the terms, completed shipment requests are generally
+                final, with no return or refund, except where required by
+                applicable law.
+              </p>
+            </details>
+            <details class="faq">
+              <summary>Will my package clear customs?</summary>
+              <p>
+                Customs and import decisions are made by the relevant
+                authorities. The recipient is responsible for providing accurate
+                required documentation and meeting applicable import
+                requirements; clearance cannot be guaranteed.
+              </p>
+            </details>
+            <details class="faq">
+              <summary>What can I view in the client dashboard?</summary>
+              <p>
+                The dashboard is intended to show available order details,
+                history, shipment tracking, credits, the actual medical bill,
+                and courier charges for your account.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="wrap">
+          <div class="cta-inner">
+            <p class="eyebrow" style="color: #a9d5d1">
+              PharmaLink client dashboard
+            </p>
+            <h2 class="serif">Follow the route with the detail you need.</h2>
+            <p>
+              Access the client dashboard to review available order information,
+              history, shipment tracking, credits, actual medical bill, and
+              courier charges.
+            </p>
+            <a
+              class="button"
+              href="https://script.google.com/macros/s/AKfycbyQafLjVf7hkR4SbRAFgeU2jRp9YQObutA0d8tKxbB11SS6OEhasPXvBzxW_ZWdsHRC/exec"
+              target="_blank"
+              rel="noopener"
+              >Go to client sign in&nbsp; →</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section policy-band">
+        <div class="wrap">
+          <div class="policy-intro">
+            <p class="eyebrow">About PharmaLink</p>
+            <h2 class="serif">
+              The route between care, documentation, and delivery.
+            </h2>
+            <p>
+              PharmaLink is the brand of Dhopat Synergy Export (OPC) Private
+              Ltd., designed to make eligible prescription supply coordination
+              from India to the USA more direct, transparent, and
+              comprehensible.
+            </p>
+            <span class="route-chip"
+              >PharmaLink route&nbsp; · &nbsp;About checkpoint</span
+            >
+          </div>
+          <div
+            class="route-line"
+            style="margin-top: 2.6rem; padding-left: 35px"
+          >
+            <span class="route-dot"></span>
+            <div class="section-head">
+              <p class="eyebrow">Our approach</p>
+              <h2 class="serif">
+                A client-focused process, without hiding the practical detail.
+              </h2>
+            </div>
+            <div class="process-grid">
+              <article class="process-card">
+                <span class="number">01</span><span class="icon-box">01</span>
+                <h3>Direct and specific</h3>
+                <p>
+                  PharmaLink is built around clear client communication, direct
+                  sign-in access, and defined information points rather than
+                  generic promises.
+                </p>
+              </article>
+              <article class="process-card">
+                <span class="number">02</span><span class="icon-box">02</span>
+                <h3>Document-led</h3>
+                <p>
+                  Prescription information, client declaration, and
+                  customs-related documents are treated as core parts of a
+                  request—not a last-minute afterthought.
+                </p>
+              </article>
+              <article class="process-card">
+                <span class="number">03</span><span class="icon-box">03</span>
+                <h3>Transparent charges</h3>
+                <p>
+                  Actual medical cost, door-to-door courier charge, and the
+                  fixed $15 service fee are presented as separate categories.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Contact us</p>
+            <h2 class="serif">Start with the right information.</h2>
+            <p>
+              For questions about the service, account access, or the details
+              required for a prescription-led request, contact PharmaLink using
+              the details below.
+            </p>
+            <span class="route-chip"
+              >PharmaLink route&nbsp; · &nbsp;Review checkpoint</span
+            >
+          </div>
+          <div class="contact-grid">
+            <article class="contact-card">
+              <span class="contact-icon">☎</span>
+              <h3>Call</h3>
+              <a href="tel:+918976139932">+91 8976139932</a>
+              <p>For general service and account queries.</p>
+            </article>
+            <article class="contact-card">
+              <span class="contact-icon">✉</span>
+              <h3>Email</h3>
+              <a href="mailto:dhopatmanoj@gmail.com">dhopatmanoj@gmail.com</a>
+              <p>
+                Share your question with the relevant supporting information.
+              </p>
+            </article>
+            <article class="contact-card">
+              <span class="contact-icon">⌖</span>
+              <h3>Office</h3>
+              <p>
+                F-103, Sec-11, Gurukutir CHS, Kalamboli, Navi Mumbai – 410218,
+                MH, India.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="policy-band">
+        <div class="wrap">
+          <div class="policy-intro">
+            <p class="eyebrow">Information and policy records</p>
+            <h2 class="serif">The essential information, kept on one route.</h2>
+            <p>
+              The following policies and disclaimers are consolidated into this
+              single-page version for review and reference. They are working
+              website drafts and should be reviewed by qualified legal counsel
+              before publication, especially for cross-border prescription
+              fulfilment.
+            </p>
+          </div>
+          <div class="policy-layout">
+            <nav class="policy-nav" aria-label="Policy section navigation">
+              <a href="#privacy">Privacy policy</a
+              ><a href="#terms">Terms &amp; conditions</a
+              ><a href="#shipping">Shipping disclaimer</a
+              ><a href="#prescription">Prescription disclaimer</a>
+            </nav>
+            <div class="policy-docs">
+              <article id="privacy" class="policy-doc">
+                <h3 class="serif">Privacy Policy</h3>
+                <p class="policy-note">
+                  Last updated: August 19, 2026. This is a working website draft
+                  and should be reviewed by qualified legal counsel before
+                  publication.
+                </p>
+                <h4>1. Who this policy covers</h4>
+                <p>
+                  This Privacy Policy applies to this PharmaLink website,
+                  operated by Dhopat Synergy Export (OPC) Private Ltd. It does
+                  not automatically apply to third-party websites, including the
+                  separately hosted client sign-in page, which may have their
+                  own privacy terms.
+                </p>
+                <h4>2. Information we may collect</h4>
+                <p>
+                  Depending on how you interact with the website or contact
+                  PharmaLink, we may receive information such as your name,
+                  email address, phone number, address, account-related query,
+                  and any information you choose to provide in correspondence.
+                  Prescription, order, or medical information should only be
+                  shared through the appropriate channel when requested for a
+                  specific service purpose.
+                </p>
+                <h4>3. How information may be used</h4>
+                <ul>
+                  <li>
+                    To respond to questions, service requests, and
+                    account-related communications.
+                  </li>
+                  <li>
+                    To review and coordinate eligible prescription-led supply
+                    requests.
+                  </li>
+                  <li>
+                    To prepare shipment-related documents and communicate with
+                    courier or service partners where needed.
+                  </li>
+                  <li>
+                    To maintain records, prevent misuse, and meet applicable
+                    legal or regulatory obligations.
+                  </li>
+                </ul>
+                <h4>4. Sharing information</h4>
+                <p>
+                  Information may be shared with personnel, suppliers, courier
+                  partners, and professional advisers where reasonably necessary
+                  to operate the service, respond to a request, prepare shipment
+                  documents, or comply with applicable law. PharmaLink does not
+                  state that it sells personal information for third-party
+                  marketing purposes.
+                </p>
+                <h4>5. Data security and retention</h4>
+                <p>
+                  Reasonable administrative and technical safeguards should be
+                  used to protect information; however, no internet transmission
+                  or storage method can be guaranteed completely secure.
+                  Information may be retained for as long as reasonably
+                  necessary for the purpose collected, service records, dispute
+                  handling, or legal obligations.
+                </p>
+                <h4>6. Your choices and contact</h4>
+                <p>
+                  To request access, correction, deletion, or raise a privacy
+                  concern, contact
+                  <a href="mailto:dhopatmanoj@gmail.com"
+                    >dhopatmanoj@gmail.com</a
+                  >. Requests will be considered subject to identity
+                  verification, service needs, and applicable legal
+                  requirements.
+                </p>
+              </article>
+
+              <article id="terms" class="policy-doc">
+                <h3 class="serif">Terms &amp; Conditions</h3>
+                <p class="policy-note">
+                  Last updated: August 19, 2026. This is a working website draft
+                  and should be reviewed by qualified legal counsel before
+                  publication.
+                </p>
+                <h4>1. Operator and scope</h4>
+                <p>
+                  PharmaLink is a brand of Dhopat Synergy Export (OPC) Private
+                  Ltd. These Terms &amp; Conditions apply to the use of this
+                  website and related service communications. They should be
+                  read with the Privacy Policy, Prescription Disclaimer, and
+                  Shipping Disclaimer.
+                </p>
+                <h4>2. Prescription-led requests</h4>
+                <p>
+                  Any request involving prescription medicines or medical
+                  products must be supported by a valid prescription and
+                  accurate information as applicable. PharmaLink does not
+                  diagnose medical conditions, issue prescriptions, or replace
+                  consultation with a licensed clinician. Acceptance,
+                  availability, and any shipment remain subject to review and
+                  applicable requirements.
+                </p>
+                <h4>3. Client responsibilities</h4>
+                <ul>
+                  <li>
+                    Provide accurate, complete, and current prescription, order,
+                    recipient, and contact information.
+                  </li>
+                  <li>
+                    Review the requested product, quantity, delivery address,
+                    and charges before confirmation.
+                  </li>
+                  <li>
+                    Ensure that importing or receiving requested items is
+                    permitted at the destination and provide required records or
+                    declarations.
+                  </li>
+                  <li>
+                    Use the client dashboard and website only for lawful,
+                    legitimate, and personal service-related purposes.
+                  </li>
+                </ul>
+                <h4>4. Charges</h4>
+                <p>
+                  The stated charge structure is: (1) actual medical cost, (2)
+                  door-to-door courier charge from India to the USA, and (3)
+                  PharmaLink’s fixed $15 service fee for each shipment request.
+                  Charges may depend on the request and must be reviewed before
+                  proceeding. Import duties, taxes, bank fees, or destination
+                  charges may be the recipient’s responsibility where
+                  applicable.
+                </p>
+                <h4>5. Shipping, customs, and delivery</h4>
+                <p>
+                  Shipment routing, carrier acceptance, transit time, customs
+                  review, duties, and final delivery are subject to the relevant
+                  carrier and governmental authorities. PharmaLink does not
+                  guarantee customs clearance, delivery time, or delivery
+                  outcome. The stated shipment limit is not more than 3 kg at a
+                  time, subject to review and applicable requirements.
+                </p>
+                <h4>6. Final orders, returns, and refunds</h4>
+                <p>
+                  Clients must recheck prescriptions and orders before
+                  confirmation. Because of the nature of supplied items and
+                  shipment processing, completed shipment requests are generally
+                  final and are not eligible for return or refund, except where
+                  required by applicable law or expressly agreed in writing
+                  before processing.
+                </p>
+                <h4>7. Website information</h4>
+                <p>
+                  Information on this website is provided for general service
+                  information and may be updated. It is not medical, legal,
+                  customs, or tax advice. Links to external sites, including the
+                  client sign-in page, are provided for convenience and are
+                  governed by their respective terms.
+                </p>
+              </article>
+
+              <article id="shipping" class="policy-doc">
+                <h3 class="serif">Shipping Disclaimer</h3>
+                <p class="policy-note">
+                  Last updated: August 19, 2026. This shipping disclaimer is a
+                  working website draft and should be reviewed by qualified
+                  legal counsel before publication.
+                </p>
+                <h4>1. Shipment limit and route</h4>
+                <p>
+                  PharmaLink states an operating limit of not more than 3 kg in
+                  one shipment to help avoid supply-chain issues and
+                  complications. This is not a guarantee that any request will
+                  be accepted, shipped, or delivered. Route availability remains
+                  subject to review, carrier policies, and applicable
+                  requirements.
+                </p>
+                <h4>2. Courier handling</h4>
+                <p>
+                  Door-to-door courier handling is coordinated through carrier
+                  services. Courier charge is separate from the actual medical
+                  cost and the fixed $15 service fee. Carrier collection,
+                  transport, handling, delay, loss, damage, or delivery actions
+                  are outside PharmaLink’s direct control.
+                </p>
+                <h4>3. Customs, imports, and recipient responsibility</h4>
+                <p>
+                  Each shipment may include a client declaration and bill for
+                  customs purposes. The recipient is responsible for accurate
+                  declarations, requested documentation, import permissions,
+                  duties, taxes, and destination-country requirements. Customs
+                  authorities and carriers independently decide whether a
+                  shipment can proceed, be delayed, be returned, or be disposed
+                  of. Clearance is not guaranteed.
+                </p>
+                <h4>4. Timing and tracking</h4>
+                <p>
+                  Any estimated time is an estimate only. Tracking information,
+                  when available, may be viewed through the client dashboard.
+                  Tracking events do not create a guarantee of delivery by a
+                  particular date or to a particular recipient.
+                </p>
+                <h4>5. Address accuracy and final delivery</h4>
+                <p>
+                  Clients are responsible for providing a complete and accurate
+                  delivery address and accessible recipient details. PharmaLink
+                  is not responsible for a failed delivery caused by inaccurate
+                  details, recipient unavailability, carrier restrictions,
+                  customs action, or events outside reasonable control.
+                </p>
+                <h4>6. No promise of import eligibility</h4>
+                <p>
+                  This website does not confirm that any product may be imported
+                  into any jurisdiction. Clients should obtain independent
+                  legal, customs, and medical guidance where needed before
+                  proceeding.
+                </p>
+              </article>
+
+              <article id="prescription" class="policy-doc">
+                <h3 class="serif">Prescription Disclaimer</h3>
+                <p class="policy-note">
+                  Last updated: August 19, 2026. This prescription disclaimer is
+                  a working website draft and should be reviewed by qualified
+                  legal counsel before publication.
+                </p>
+                <h4>1. No medical advice</h4>
+                <p>
+                  Website content and service communications are not medical
+                  advice, diagnosis, treatment guidance, or a substitute for
+                  advice from a qualified healthcare professional. Never delay
+                  urgent medical care or change a treatment plan based on
+                  information on this website.
+                </p>
+                <h4>2. Valid prescription requirement</h4>
+                <p>
+                  Requests involving prescription medicines or medical products
+                  must be supported by a valid prescription and supporting
+                  documentation as applicable. Clients are responsible for
+                  ensuring that their prescription, requested items, quantity,
+                  recipient information, and health-related details are accurate
+                  and current.
+                </p>
+                <h4>3. No prescribing or clinical review</h4>
+                <p>
+                  PharmaLink and Dhopat Synergy Export (OPC) Private Ltd. do not
+                  issue prescriptions, diagnose conditions, determine clinical
+                  suitability, or replace consultation with a licensed
+                  clinician. Product availability, acceptance, and shipment
+                  remain subject to review and applicable requirements.
+                </p>
+                <h4>4. Client declaration and information</h4>
+                <p>
+                  Clients may be asked to provide a declaration and information
+                  needed for supply coordination or customs documentation.
+                  Clients should provide only accurate information and should
+                  not request any product that is not lawfully prescribed or
+                  permitted for them to receive.
+                </p>
+                <h4>5. Medication safety</h4>
+                <p>
+                  For questions about dosage, interactions, side effects,
+                  storage, a missed dose, or adverse reactions, contact a
+                  qualified physician, pharmacist, emergency service, or local
+                  poison control resource as appropriate. If you believe you are
+                  experiencing a medical emergency, seek urgent local medical
+                  assistance.
+                </p>
+                <h4>6. No guarantee of supply or acceptance</h4>
+                <p>
+                  The website does not promise that any requested product will
+                  be available, accepted, supplied, shipped, imported, or
+                  delivered. Regulations and professional requirements may limit
+                  what can be processed.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#top"
+              ><svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+                <path
+                  d="M23 8v18a8 8 0 0 0 8 8h11a8 8 0 0 1 8 8v14"
+                  fill="none"
+                  stroke="#4cb6ba"
+                  stroke-width="7"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M41 56V38a8 8 0 0 0-8-8H22a8 8 0 0 1-8-8V9"
+                  fill="none"
+                  stroke="#a9d5d1"
+                  stroke-width="7"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M30 13h8m-4-4v8"
+                  fill="none"
+                  stroke="#4cb6ba"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                /></svg
+              ><span
+                ><span class="brand-name" style="color: #fff"
+                  >Pharma<b style="color: #4cb6ba">Link</b></span
+                ><span class="brand-kicker" style="color: #a9c6ca"
+                  >Prescription supply coordination</span
+                ></span
+              ></a
+            >
+            <p>
+              A direct, document-led coordination route for eligible
+              prescription supply requests from India to clients in the USA.
+            </p>
+          </div>
+          <div>
+            <p class="footer-title">Information</p>
+            <nav class="footer-links">
+              <a href="#about">About Us</a><a href="#contact">Contact Us</a
+              ><a href="#privacy">Privacy Policy</a
+              ><a href="#terms">Terms &amp; Conditions</a
+              ><a href="#shipping">Shipping Disclaimer</a
+              ><a href="#prescription">Prescription Disclaimer</a>
+            </nav>
+          </div>
+          <div>
+            <p class="footer-title">Contact</p>
+            <div class="footer-contact">
+              +91 8976139932<br />dhopatmanoj@gmail.com<br />F-103, Sec-11,
+              Gurukutir CHS, Kalamboli, Navi Mumbai – 410218, MH, India
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >© 2026 Dhopat Synergy Export (OPC) Private Ltd. Trading as
+            PharmaLink.</span
+          ><span
+            >Prescription-led requests only · Review shipping and prescription
+            disclaimers before proceeding.</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.querySelector(".mobile-toggle");
+      const mobileNav = document.querySelector(".mobile-nav");
+      toggle.addEventListener("click", () => {
+        const isOpen = mobileNav.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", isOpen);
+        toggle.textContent = isOpen ? "×" : "☰";
+      });
+      mobileNav.querySelectorAll("a").forEach((link) =>
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("is-open");
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.textContent = "☰";
+        }),
+      );
+    </script>
+  </body>
+</html>
