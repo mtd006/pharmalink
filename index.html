@@ -159,6 +159,13 @@
         width: 40px;
         height: 40px;
       }
+      .brand-logo {
+        display: block;
+        width: 205px;
+        height: 56px;
+        object-fit: contain;
+        object-position: left center;
+      }
       .brand-name {
         position: relative;
         display: block;
@@ -940,6 +947,469 @@
         box-shadow: none;
       }
 
+      /* Generic medicines — one clear, medically responsible information and media checkpoint. */
+      .generic-zone {
+        background: #f2f7f6;
+      }
+      .generic-grid {
+        display: grid;
+        grid-template-columns: 0.86fr 1.14fr;
+        gap: 4.2rem;
+        align-items: center;
+      }
+      .generic-copy h2 {
+        margin: 0.65rem 0 0;
+        font-size: clamp(2.3rem, 4vw, 4rem);
+        letter-spacing: -0.065em;
+        line-height: 0.97;
+      }
+      .generic-copy > p:not(.eyebrow) {
+        color: var(--muted);
+        line-height: 1.72;
+      }
+      .generic-facts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        margin-top: 1.6rem;
+        border: 1px solid #cbdedb;
+        background: #cbdedb;
+      }
+      .generic-fact {
+        min-height: 130px;
+        padding: 1rem;
+        background: #fbfdfc;
+      }
+      .generic-fact strong {
+        display: block;
+        color: var(--blue-deep);
+        font-size: 0.8rem;
+        line-height: 1.35;
+      }
+      .generic-fact span {
+        display: block;
+        margin-top: 0.45rem;
+        color: #5d777e;
+        font-size: 0.73rem;
+        line-height: 1.5;
+      }
+      .generic-brand-panel {
+        position: relative;
+        overflow: hidden;
+        padding: 1.5rem;
+        border: 1px solid #cadfdb;
+        border-radius: 0.3rem 1.25rem 1.25rem 1.25rem;
+        background: #fff;
+        box-shadow: 12px 12px 0 #d3e9e5;
+      }
+      .generic-brand-panel::before {
+        content: "GENERIC MEDICINE / INFORMATION NOTE";
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0.7rem 0.95rem;
+        border-radius: 0 0 0.6rem 0;
+        color: #e4f2f4;
+        background: var(--blue-deep);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+      }
+      .generic-logo {
+        display: block;
+        width: min(100%, 340px);
+        margin: 2.3rem auto 1.5rem;
+        mix-blend-mode: multiply;
+      }
+      .generic-brand-panel p {
+        margin: 0;
+        color: #5b747d;
+        font-size: 0.86rem;
+        line-height: 1.68;
+      }
+      .side-effect-caution {
+        display: flex;
+        gap: 0.85rem;
+        margin-top: 1.1rem;
+        padding: 1rem;
+        border-left: 3px solid var(--saffron);
+        background: #fff8e8;
+        color: #625b49;
+        font-size: 0.84rem;
+        line-height: 1.62;
+      }
+      .side-effect-caution b {
+        display: block;
+        margin-bottom: 0.18rem;
+        color: #70430f;
+      }
+      .caution-mark {
+        display: grid;
+        place-items: center;
+        flex: 0 0 28px;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        color: #fff;
+        background: var(--saffron);
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+      .video-section {
+        padding-top: 0;
+        background: #f2f7f6;
+      }
+      .video-card {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        overflow: hidden;
+        border: 1px solid #c9ddda;
+        border-radius: 1.4rem 0.25rem 1.4rem 1.4rem;
+        background: #fff;
+        box-shadow: var(--shadow);
+      }
+      .video-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        background: var(--blue-deep);
+        color: #fff;
+      }
+      .video-copy .eyebrow {
+        color: #a9d5d1;
+      }
+      .video-copy h2 {
+        margin: 0.65rem 0 0;
+        font-size: clamp(2.1rem, 3.5vw, 3.25rem);
+        letter-spacing: -0.06em;
+        line-height: 0.98;
+      }
+      .video-copy p:not(.eyebrow) {
+        color: #d5e8eb;
+        line-height: 1.7;
+      }
+      .video-frame {
+        position: relative;
+        aspect-ratio: 16 / 9;
+        min-height: 300px;
+        background: #0c2030;
+      }
+      .video-frame iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      @media (max-width: 1000px) {
+        .generic-grid,
+        .video-card {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 760px) {
+        .generic-facts {
+          grid-template-columns: 1fr;
+        }
+        .generic-brand-panel {
+          box-shadow: 8px 8px 0 #d3e9e5;
+        }
+        .video-copy {
+          padding: 1.5rem;
+        }
+        .video-frame {
+          min-height: 0;
+        }
+      }
+
+      /* Android app installation — a clear client route that keeps security decisions visible. */
+      .app-install-zone {
+        background: linear-gradient(180deg, #f2f7f6 0%, #fbfaf6 100%);
+      }
+      .app-intro {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 3.5rem;
+        align-items: center;
+      }
+      .app-intro h2 {
+        margin: 0.65rem 0 0;
+        font-size: clamp(2.3rem, 4vw, 4rem);
+        letter-spacing: -0.065em;
+        line-height: 0.97;
+      }
+      .app-intro > div > p:not(.eyebrow) {
+        max-width: 570px;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+      .app-download-card {
+        position: relative;
+        overflow: hidden;
+        padding: 1.6rem;
+        border: 1px solid #b9d5d4;
+        border-radius: 1.25rem 0.25rem 1.25rem 1.25rem;
+        color: #fff;
+        background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+        box-shadow: var(--shadow);
+      }
+      .app-download-card::after {
+        content: "";
+        position: absolute;
+        right: -75px;
+        bottom: -105px;
+        width: 240px;
+        height: 240px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 25px rgba(255, 255, 255, 0.07),
+          0 0 0 50px rgba(255, 255, 255, 0.04);
+      }
+      .app-download-card > * {
+        position: relative;
+        z-index: 1;
+      }
+      .app-download-card .eyebrow {
+        color: #bde4e1;
+      }
+      .app-download-card h3 {
+        max-width: 430px;
+        margin: 0.6rem 0;
+        font-size: clamp(1.75rem, 3vw, 2.45rem);
+        letter-spacing: -0.055em;
+        line-height: 1;
+      }
+      .app-download-card p {
+        max-width: 460px;
+        color: #d8ecee;
+        font-size: 0.88rem;
+        line-height: 1.65;
+      }
+      .app-download-card .button {
+        margin-top: 0.45rem;
+        color: var(--blue-deep);
+        background: #fff;
+        box-shadow: none;
+      }
+      .app-file-meta {
+        display: block;
+        margin-top: 0.95rem;
+        color: #b8dbdf;
+        font-size: 0.64rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .app-checklist {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        margin: 3rem 0 0;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+      .app-check {
+        padding: 1rem 1.05rem;
+        background: #fff;
+      }
+      .app-check b {
+        display: flex;
+        gap: 0.45rem;
+        align-items: center;
+        color: var(--blue-deep);
+        font-size: 0.82rem;
+      }
+      .app-check b::before {
+        content: "✓";
+        display: grid;
+        place-items: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        color: #fff;
+        background: var(--teal);
+        font-size: 0.68rem;
+      }
+      .app-check span {
+        display: block;
+        margin-top: 0.43rem;
+        color: var(--muted);
+        font-size: 0.75rem;
+        line-height: 1.52;
+      }
+      .app-steps {
+        position: relative;
+        display: grid;
+        gap: 0;
+        margin-top: 3rem;
+        padding-left: 46px;
+      }
+      .app-steps::before {
+        content: "";
+        position: absolute;
+        top: 19px;
+        bottom: 48px;
+        left: 14px;
+        border-left: 2px dashed #b8d0d0;
+      }
+      .app-step {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.78fr 1.22fr;
+        gap: 1.5rem;
+        padding: 0 0 1.25rem;
+      }
+      .app-step::before {
+        content: attr(data-step);
+        position: absolute;
+        top: 1rem;
+        left: -46px;
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border: 3px solid var(--paper);
+        border-radius: 50%;
+        color: #d9f0ee;
+        background: var(--blue-deep);
+        box-shadow: 0 0 0 1px #9ebaba;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+      .app-step-title {
+        padding: 1.2rem 0;
+      }
+      .app-step-title h3 {
+        margin: 0.15rem 0 0;
+        font-size: 1.25rem;
+        letter-spacing: -0.035em;
+      }
+      .app-step-title span {
+        color: var(--teal);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .app-step-body {
+        padding: 1.2rem 1.3rem;
+        border: 1px solid var(--line);
+        border-radius: 0.25rem 1rem 1rem 1rem;
+        background: #fff;
+      }
+      .app-step-body p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+        line-height: 1.67;
+      }
+      .android-path {
+        display: inline-block;
+        margin-top: 0.75rem;
+        padding: 0.55rem 0.7rem;
+        border: 1px solid #cfe0df;
+        border-radius: 0.45rem;
+        color: var(--blue-deep);
+        background: #edf6f5;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.72rem;
+        line-height: 1.4;
+      }
+      .app-note {
+        display: flex;
+        gap: 0.55rem;
+        align-items: flex-start;
+        margin-top: 0.75rem;
+        padding: 0.72rem;
+        border-left: 3px solid var(--saffron);
+        color: #6c5d3e;
+        background: #fff9ea;
+        font-size: 0.75rem;
+        line-height: 1.55;
+      }
+      .app-note strong {
+        color: #70430f;
+      }
+      .app-faq-wrap {
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 4rem;
+        margin-top: 2.4rem;
+        padding-top: 2.6rem;
+        border-top: 1px solid var(--line);
+      }
+      .app-faq-list {
+        border-top: 1px solid var(--line);
+      }
+      .app-faq {
+        border-bottom: 1px solid var(--line);
+      }
+      .app-faq summary {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 0;
+        list-style: none;
+        color: var(--blue-deep);
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .app-faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .app-faq summary::after {
+        content: "+";
+        color: var(--teal);
+        font-size: 1.15rem;
+      }
+      .app-faq[open] summary::after {
+        content: "−";
+      }
+      .app-faq p {
+        margin: 0;
+        padding: 0 0 1rem;
+        color: var(--muted);
+        font-size: 0.84rem;
+        line-height: 1.65;
+      }
+      @media (max-width: 1000px) {
+        .app-intro,
+        .app-faq-wrap {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .app-step {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .app-step-title {
+          padding-bottom: 0.5rem;
+        }
+      }
+      @media (max-width: 760px) {
+        .app-checklist {
+          grid-template-columns: 1fr;
+        }
+        .app-steps {
+          padding-left: 35px;
+        }
+        .app-steps::before {
+          left: 10px;
+        }
+        .app-step::before {
+          left: -35px;
+          width: 23px;
+          height: 23px;
+          font-size: 0.6rem;
+        }
+        .app-download-card {
+          padding: 1.35rem;
+        }
+      }
+
       /* Information & policy documents */
       .policy-band {
         padding: 6rem 0;
@@ -1379,6 +1849,10 @@
           width: 38px;
           height: 38px;
         }
+        .brand-logo {
+          width: 185px;
+          height: 50px;
+        }
       }
       @media (prefers-reduced-motion: no-preference) {
         .hero-copy,
@@ -1409,43 +1883,15 @@
     <header class="site-header">
       <div class="wrap header-inner">
         <a class="brand" href="#top" aria-label="PharmaLink home">
-          <svg
-            class="brand-mark"
-            viewBox="0 0 64 64"
-            role="img"
-            aria-label="PharmaLink route symbol"
-          >
-            <path
-              d="M23 8v18a8 8 0 0 0 8 8h11a8 8 0 0 1 8 8v14"
-              fill="none"
-              stroke="#135c9b"
-              stroke-width="7"
-              stroke-linecap="round"
-            />
-            <path
-              d="M41 56V38a8 8 0 0 0-8-8H22a8 8 0 0 1-8-8V9"
-              fill="none"
-              stroke="#187b78"
-              stroke-width="7"
-              stroke-linecap="round"
-            />
-            <path
-              d="M30 13h8m-4-4v8"
-              fill="none"
-              stroke="#135c9b"
-              stroke-width="4"
-              stroke-linecap="round"
-            />
-          </svg>
-          <span
-            ><span class="brand-name">Pharma<b>Link</b></span
-            ><span class="brand-kicker"
-              >Prescription supply coordination</span
-            ></span
-          >
+          <img
+            class="brand-logo"
+            src="PharmaLink.png"
+            alt="PharmaLink — from India to USA, with care and trust"
+          />
         </a>
         <nav class="main-nav" aria-label="Main navigation">
-          <a href="#process">How it works</a><a href="#about">About us</a
+          <a href="#process">How it works</a
+          ><a href="#app-install">Install app</a><a href="#about">About us</a
           ><a href="#contact">Contact</a><a href="#terms">Terms</a>
         </nav>
         <div class="header-actions">
@@ -1474,7 +1920,8 @@
         aria-label="Mobile navigation"
       >
         <div class="wrap">
-          <a href="#process">How it works</a><a href="#about">About us</a
+          <a href="#process">How it works</a
+          ><a href="#app-install">Install app</a><a href="#about">About us</a
           ><a href="#contact">Contact</a
           ><a href="#terms">Terms &amp; Conditions</a
           ><a href="#shipping">Shipping disclaimer</a
@@ -1760,6 +2207,354 @@
               </p>
               <a href="#terms">Read terms and conditions&nbsp; →</a>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="generic-medicines" class="section generic-zone">
+        <div class="wrap generic-grid">
+          <div class="generic-copy">
+            <p class="eyebrow">Generic medicine, explained</p>
+            <h2 class="serif">
+              A generic medicine is not simply an unbranded copy.
+            </h2>
+            <p>
+              Where approved by the relevant regulator, a generic medicine is
+              developed to match a reference brand medicine in its active
+              ingredient, strength, dosage form, route of administration, and
+              intended use. It is evaluated to demonstrate therapeutic
+              equivalence or bioequivalence under the applicable approval
+              standard.
+            </p>
+            <div
+              class="generic-facts"
+              aria-label="What can be the same or different in a generic medicine"
+            >
+              <div class="generic-fact">
+                <strong>Same therapeutic target</strong
+                ><span
+                  >Approved generics are designed to provide the same clinical
+                  effect and safety profile as their reference brand
+                  medicine.</span
+                >
+              </div>
+              <div class="generic-fact">
+                <strong>Different presentation</strong
+                ><span
+                  >Packaging, colour, shape, name, and certain inactive
+                  ingredients may differ.</span
+                >
+              </div>
+              <div class="generic-fact">
+                <strong>Professional review matters</strong
+                ><span
+                  >Not every product is appropriate for every person or
+                  automatically interchangeable in every situation.</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="generic-brand-panel">
+            <img
+              class="generic-logo"
+              src="PharmaLink.png"
+              alt="PharmaLink from India to USA, with care and trust"
+            />
+            <p>
+              Affordable access should still be guided by the prescription, the
+              approved product information, and the advice of a qualified
+              prescriber or pharmacist. The product supplied must match the
+              prescription and applicable requirements.
+            </p>
+            <aside class="side-effect-caution" role="note">
+              <span class="caution-mark">!</span
+              ><span
+                ><b>Side-effects precaution</b>Generic medicines, like brand
+                medicines, may cause side effects. If you notice an unexpected,
+                severe, or concerning reaction, contact a qualified healthcare
+                professional promptly; seek urgent local medical care for an
+                emergency.</span
+              >
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="section video-section" aria-labelledby="video-title">
+        <div class="wrap">
+          <div class="video-card">
+            <div class="video-copy">
+              <p class="eyebrow">Watch PharmaLink</p>
+              <h2 id="video-title" class="serif">
+                See the PharmaLink route in motion.
+              </h2>
+              <p>
+                This short product and marketing video introduces the PharmaLink
+                generic medicine distributor portal and the intended service
+                journey.
+              </p>
+              <a
+                class="button alt"
+                href="https://youtu.be/oTEPHhhzIxY"
+                target="_blank"
+                rel="noopener"
+                >Watch on YouTube&nbsp; ↗</a
+              >
+            </div>
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/oTEPHhhzIxY?rel=0"
+                title="PharmaLink product and marketing video"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="app-install"
+        class="section app-install-zone"
+        aria-labelledby="app-install-title"
+      >
+        <div class="wrap">
+          <div class="app-intro">
+            <div>
+              <p class="eyebrow">Android business app</p>
+              <h2 id="app-install-title" class="serif">
+                Install your PharmaLink app with a clear, secure route.
+              </h2>
+              <p>
+                This guide is for PharmaLink clients who have received the
+                Android app link through an approved business communication. The
+                app is an Android <strong>.apk</strong> file; it is not
+                available for iPhone or iPad.
+              </p>
+              <span class="route-chip"
+                >Six guided steps&nbsp; · &nbsp;Client onboarding</span
+              >
+            </div>
+            <aside class="app-download-card">
+              <p class="eyebrow">Step 0 · Official app link</p>
+              <h3 class="serif">Download the PharmaLink Android app.</h3>
+              <p>
+                Use this link only if it was sent to you directly by PharmaLink
+                or your authorised representative. The installer is an Android
+                APK file.
+              </p>
+              <a
+                class="button"
+                href="https://drive.google.com/uc?export=download&id=1vnr6r4N7MK4I8FpfGXtLm79noVliKk1q"
+                target="_blank"
+                rel="noopener"
+                >Download Android app&nbsp; ↓</a
+              >
+              <span class="app-file-meta"
+                >File type: .apk · Source: PharmaLink Google Drive</span
+              >
+            </aside>
+          </div>
+
+          <div class="app-checklist" aria-label="Before you begin checklist">
+            <div class="app-check">
+              <b>Android device</b
+              ><span
+                >Use an Android phone or tablet. The current installer does not
+                work on iPhone or iPad.</span
+              >
+            </div>
+            <div class="app-check">
+              <b>Stable connection</b
+              ><span
+                >Use a trusted internet connection to download the app file
+                without interruption.</span
+              >
+            </div>
+            <div class="app-check">
+              <b>Credentials ready</b
+              ><span
+                >Keep your User ID, password, and 6-digit PIN available for
+                first login.</span
+              >
+            </div>
+          </div>
+
+          <div class="app-steps" aria-label="Android app installation steps">
+            <article class="app-step" data-step="1">
+              <div class="app-step-title">
+                <span>Device setting</span>
+                <h3>Allow the installer source</h3>
+              </div>
+              <div class="app-step-body">
+                <p>
+                  Android normally blocks apps that are not installed through
+                  the Play Store. Allow installation only for the browser or
+                  file app you are currently using, and only after confirming
+                  that the link came directly from PharmaLink.
+                </p>
+                <span class="android-path"
+                  >Settings → Apps → Special access → Install unknown apps →
+                  Select browser / Files → Allow</span
+                >
+                <div class="app-note">
+                  <span>!</span
+                  ><span
+                    ><strong>Security checkpoint:</strong> Phone menus vary by
+                    brand. After the installation, you can turn this permission
+                    off again in the same settings area.</span
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="app-step" data-step="2">
+              <div class="app-step-title">
+                <span>Download</span>
+                <h3>Get the official APK file</h3>
+              </div>
+              <div class="app-step-body">
+                <p>
+                  Tap the <strong>Download Android app</strong> button above.
+                  Wait for the download to complete; Android usually saves the
+                  file to your device’s <strong>Downloads</strong> folder.
+                </p>
+                <div class="app-note">
+                  <span>!</span
+                  ><span
+                    ><strong>Download safely:</strong> Do not use an APK link
+                    from an unfamiliar message, website, or social-media post.
+                    If you are unsure, contact PharmaLink before opening
+                    it.</span
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="app-step" data-step="3">
+              <div class="app-step-title">
+                <span>Locate</span>
+                <h3>Open the downloaded file</h3>
+              </div>
+              <div class="app-step-body">
+                <p>
+                  Tap the completed download notification, or open
+                  <strong>Files</strong> / <strong>My Files</strong>, choose
+                  <strong>Downloads</strong>, and select the PharmaLink APK.
+                  Check that you are opening the file you intentionally
+                  downloaded.
+                </p>
+              </div>
+            </article>
+            <article class="app-step" data-step="4">
+              <div class="app-step-title">
+                <span>Review</span>
+                <h3>Confirm the installation</h3>
+              </div>
+              <div class="app-step-body">
+                <p>
+                  Android will display the app name and requested permissions.
+                  Review the information and tap <strong>Install</strong> only
+                  when it matches the PharmaLink app and your expected
+                  onboarding process.
+                </p>
+                <div class="app-note">
+                  <span>!</span
+                  ><span
+                    ><strong>Stop if anything looks unexpected:</strong> Do not
+                    continue if the name, source, or permissions do not match
+                    what PharmaLink communicated. Ask your representative to
+                    verify it.</span
+                  >
+                </div>
+              </div>
+            </article>
+            <article class="app-step" data-step="5">
+              <div class="app-step-title">
+                <span>Open</span>
+                <h3>Launch the app</h3>
+              </div>
+              <div class="app-step-body">
+                <p>
+                  When installation finishes, tap <strong>Open</strong>. You can
+                  also find the PharmaLink app in your phone’s home screen or
+                  app drawer.
+                </p>
+              </div>
+            </article>
+            <article class="app-step" data-step="6">
+              <div class="app-step-title">
+                <span>Access</span>
+                <h3>Log in with your business credentials</h3>
+              </div>
+              <div class="app-step-body">
+                <p>
+                  Enter the User ID, password, and 6-digit PIN provided by
+                  PharmaLink. Keep these credentials private and contact your
+                  PharmaLink representative if you need an account reset.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div class="app-faq-wrap">
+            <div class="section-head">
+              <p class="eyebrow">App support</p>
+              <h2 class="serif">Installation questions, answered.</h2>
+              <p>
+                Use the correct support path instead of bypassing Android safety
+                controls or sharing your business credentials.
+              </p>
+            </div>
+            <div class="app-faq-list">
+              <details class="app-faq">
+                <summary>
+                  Android says the file may be harmful. What should I do?
+                </summary>
+                <p>
+                  Android displays an extra warning for apps installed outside
+                  the Play Store. Do not proceed automatically. First confirm
+                  that the download link was sent directly by PharmaLink and
+                  that the app details match your expected onboarding. Contact
+                  your representative if you are unsure.
+                </p>
+              </details>
+              <details class="app-faq">
+                <summary>I cannot find “Install unknown apps.”</summary>
+                <p>
+                  Settings vary by device. Search your phone’s Settings for
+                  “Install unknown apps.” On some older Android versions, the
+                  option may appear under Settings → Security as “Unknown
+                  sources.” Enable it only for the trusted app you are using to
+                  complete this installation, then turn it off afterwards.
+                </p>
+              </details>
+              <details class="app-faq">
+                <summary>The app will not open after installation.</summary>
+                <p>
+                  Restart your phone, confirm that it has enough available
+                  storage, and download the file again from the official
+                  PharmaLink link. If the issue remains, contact your PharmaLink
+                  representative for assistance.
+                </p>
+              </details>
+              <details class="app-faq">
+                <summary>I forgot my User ID, password, or PIN.</summary>
+                <p>
+                  Contact your PharmaLink representative. Do not share your
+                  credentials through public channels or with anyone who is not
+                  an authorised support contact.
+                </p>
+              </details>
+              <details class="app-faq">
+                <summary>Can I install this on iPhone or iPad?</summary>
+                <p>
+                  No. This installer is an Android APK file and does not work on
+                  iPhone or iPad. Ask PharmaLink whether an iOS version is
+                  available.
+                </p>
+              </details>
+            </div>
           </div>
         </div>
       </section>
