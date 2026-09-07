@@ -1,0 +1,25 @@
+# PharmaLink
+
+> Prescription-led medical support, generic medicine information, and specialty drug coordination for documented requests.
+
+- Primary URL: https://mtd006.github.io/pharmalink/
+- Organization: PharmaLink
+- Service area: India to the USA
+- Content type: Single-page website with a crawlable medicine directory
+
+## Summary
+PharmaLink provides document-led coordination for prescription medicine requests. The site includes service information, contact details, disclaimers, app installation guidance, FAQs, and a visible medicine directory built from the attached product list.
+
+## Key search topics
+prescription medicine support USA, generic medicine information, oncology medicines, hepatitis medicines, HIV medicines, diabetes medicines, cardiology medicines, autoimmune medicines, specialty drug coordination, prescription-led supply support
+
+## Important notes
+- Informational and coordination-focused content only
+- Prescription-led requests only
+- Medical advice, prescribing, and treatment suitability must come from licensed healthcare professionals
+
+## Main sections
+- Homepage and service overview: https://mtd006.github.io/pharmalink/
+- Medicine directory: https://mtd006.github.io/pharmalink/#medicine-directory
+- Contact: https://mtd006.github.io/pharmalink/#contact
+- Terms and disclaimers: https://mtd006.github.io/pharmalink/#terms
